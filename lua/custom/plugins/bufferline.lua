@@ -1,11 +1,12 @@
 return {
   'akinsho/bufferline.nvim',
   version = '*',
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'famiu/bufdelete.nvim' },
   config = function()
     vim.opt.termguicolors = true
     require('bufferline').setup {
       options = {
+        close_command = require('bufdelete').bufdelete,
         mode = 'buffers',
         numbers = 'buffer_id',
         diagnostics = 'nvim_lsp',
