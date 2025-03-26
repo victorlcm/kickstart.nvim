@@ -486,6 +486,7 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      { 'towolf/vim-helm', ft = 'helm' },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -684,7 +685,11 @@ require('lazy').setup({
           },
         },
 
-        helm_ls = {},
+        helm_ls = {
+          yamlls = {
+            path = 'yaml-language-server',
+          },
+        },
         -- pyright = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -1014,6 +1019,50 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>rx'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>rX'] = '@parameter.inner',
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+        },
+      },
+    },
+    dependencies = {
+      { 'nvim-treesitter/nvim-treesitter-textobjects' },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
