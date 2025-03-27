@@ -714,6 +714,15 @@ require('lazy').setup({
             },
           },
         },
+
+        terraformls = {
+          filetypes = {
+            'terraform',
+            'terraform-vars',
+            'hcl',
+            'tf',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -815,7 +824,7 @@ require('lazy').setup({
         sql = { 'sql_formatter' },
         rust = { 'rustfmt' },
         ruby = { 'rubyfmt' },
-        terraform = { 'terraform_fmt' },
+        terraform = { 'tofu_fmt' },
         terragrunt = { 'terragrunt_hclfmt' },
         yaml = { 'yamlfmt' },
       },
